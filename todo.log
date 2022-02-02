@@ -1,0 +1,5 @@
+1. Client that requests an object from the Proxy Server and receives a response.
+2. A Proxy Server that forwards the request to the Web Server and receives a response.
+3. A Web Server that receives a request and returns a response. 
+
+* The Proxy Server requires to be multi-threaded. 
