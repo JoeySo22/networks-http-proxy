@@ -1,10 +1,14 @@
+#! /usr/bin/env python3
+import http
 from socket import *
 import sys
 
 if len(sys.argv) <= 1:
 	print('Usage : "python ProxyServer.py server_ip"\n[server_ip : It is the IP Address Of Proxy Server')
 	sys.exit(2)
-	
+
+# True server address
+origin_server_addr = ('127.0.0.1', 8889)	
 # The proxy server is listening at 8888 
 tcpSerSock = socket(AF_INET, SOCK_STREAM)
 tcpSerSock.bind((sys.argv[1], 8888))
@@ -14,18 +18,19 @@ while 1:
 	# Strat receiving data from the client
 	print('Ready to serve...')
 	## FILL IN HERE...
-
+	clientSock, addr = tcpSerSock.accept()
 
 	print('Received a connection from:', addr)
 
-	message = ## FILL IN HERE...
+	message = clientSock.recv(1024).decode('utf-8')# FILL IN HERE...
 	print(message)
 	# Extract the filename from the given message
-
+	sys.exit(-1)
 	## FILL IN HERE...
 
-	filetouse = ## FILL IN HERE...
-
+	filetouse = None## FILL IN HERE...
+	tcpCliSock = socket(AF_INET, SOCK_STREAM)
+	tcpCliSock.connect(origin_server_addr)
 	try:
 		# Check wether the file exist in the cache
 
@@ -45,6 +50,8 @@ while 1:
 		if fileExist == "false": 
 
 			## FILL IN HERE...
+			try:
+				pass
 			except:
 				print("Illegal request")                                               
 		else:
